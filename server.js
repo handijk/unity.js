@@ -7,7 +7,7 @@ public = new static.Server('./public');
 
 app.listen(80);
 
-function handler (request, response) {
+function handler(request, response) {
 
     request.addListener('end', function () {
         public.serve(request, response);
@@ -26,10 +26,12 @@ function handler (request, response) {
 }
 
 io.sockets.on('connection', function (socket) {
+
     
-    socket.emit('news', { hello: 'world' });
+    
+    /*socket.emit('news', { hello: 'world' });
     
     socket.on('my other event', function (data) {
         console.log(data);
-    });
+    });*/
 });
