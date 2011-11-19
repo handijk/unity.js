@@ -9,7 +9,9 @@ app.listen(80);
 
 function handler (request, response) {
 
-    public.serve(request, response);
+    request.addListener('end', function () {
+        public.serve(request, response);
+    });
 
     /*fs.readFile(__dirname + '/index.html', function (err, data) {
     

@@ -1,12 +1,17 @@
 var app = require('http').createServer(handler), 
     io = require('socket.io').listen(app),
-    fs = require('fs');
+//  fs = require('fs'),
+    static = require('node-static');
+
+public = new static.Server('./public');
 
 app.listen(80);
 
-function handler (req, res) {
-    
-    fs.readFile(__dirname + '/index.html', function (err, data) {
+function handler (request, response) {
+
+    public.serve(request, response);
+
+    /*fs.readFile(__dirname + '/index.html', function (err, data) {
     
         if (err) {
             res.writeHead(500);
@@ -15,7 +20,7 @@ function handler (req, res) {
 
         res.writeHead(200);
         res.end(data);
-    });
+    });*/
 }
 
 io.sockets.on('connection', function (socket) {
