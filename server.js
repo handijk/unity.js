@@ -1,16 +1,16 @@
 var app = require('http').createServer(handler), 
     io = require('socket.io').listen(app),
 //  fs = require('fs'),
-    static = require('node-static');
+    node_static = require('node-static');
 
-public = new static.Server('./public');
+static_files = new node_static.Server('./public');
 
 app.listen(80);
 
 function handler(request, response) {
 
     request.addListener('end', function () {
-        public.serve(request, response);
+        static_files.serve(request, response);
     });
 
     /*fs.readFile(__dirname + '/index.html', function (err, data) {
